@@ -14,12 +14,6 @@
 </p>
 
 <p align="center">
-  <img src="public/screenshot.png" alt="Nocturne — home view" width="48%">
-  &nbsp;
-  <img src="public/screenshot.png" alt="" width="0">
-</p>
-
-<p align="center">
   <a href="#run"><strong>Try it locally</strong></a> ·
   <a href="https://github.com/CarlAyeng/nocturne/issues"><strong>Report a bug</strong></a> ·
   <a href="https://github.com/CarlAyeng/nocturne/blob/main/LICENSE"><strong>License</strong></a>

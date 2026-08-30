@@ -10,7 +10,13 @@
 ![MIT License](https://img.shields.io/badge/license-MIT-22c55e)
 
 <p align="center">
-  <img src="public/screenshot.png" alt="Nocturne — home view" width="100%">
+  <img src="public/demo.gif" alt="Nocturne — playing LOQ's Midnight Cassette" width="100%">
+</p>
+
+<p align="center">
+  <img src="public/screenshot.png" alt="Nocturne — home view" width="48%">
+  &nbsp;
+  <img src="public/screenshot.png" alt="" width="0">
 </p>
 
 <p align="center">

@@ -8,6 +8,10 @@
 ![Nocturne](https://img.shields.io/badge/Tailwind-3-38bdf8?logo=tailwindcss&logoColor=white)
 ![Nocturne](https://img.shields.io/badge/Framer%20Motion-11-ff69b4?logo=framer&logoColor=white)
 
+<p align="center">
+  <img src="public/screenshot.png" alt="Nocturne — home view" width="100%">
+</p>
+
 ---
 
 ## What's inside

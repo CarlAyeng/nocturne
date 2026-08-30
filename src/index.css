@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================= *
+ *  Nocturne — design tokens & global styles
+ * ============================================================= */
+
+:root {
+  color-scheme: dark;
+
+  /* Brand palette (kept in sync with tailwind.config.js) */
+  --canvas: #0b0b14;
+  --surface: #141420;
+  --surface-2: #1b1b2b;
+  --surface-3: #24243a;
+  --line: rgba(255, 255, 255, 0.08);
+  --primary: #8b5cf6;
+  --accent: #ec4899;
+  --glow: #a855f7;
+  --ink: #f5f5fb;
+  --muted: #9ca3b8;
+
+  /* Dynamic album theme — updated at runtime from the current track's palette.
+     Falls back to the brand colors. */
+  --theme-1: #8b5cf6;
+  --theme-2: #ec4899;
+  --theme-3: #22103a;
+
+  --player-h: 88px;
+  --sidebar-w: 264px;
+  --sidebar-w-collapsed: 76px;
+  --topbar-h: 64px;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden; /* app owns its own scroll regions */
+
+  /* Ambient photo background. The dim overlay keeps the card readable
+     regardless of how bright the photo is. Falls back to the dark canvas
+     color if /bg.jpg is missing or fails to load. */
+  background-color: var(--canvas);
+  background-image:
+    linear-gradient(180deg, rgba(11, 11, 20, 0.55) 0%, rgba(11, 11, 20, 0.7) 100%),
+    url('/bg.jpg');
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+  animation: bg-drift 30s ease-in-out infinite alternate;
+}
+
+@keyframes bg-drift {
+  from { background-position: center, 50% 50%; }
+  to { background-position: center, 55% 50%; }
+}
+
+/* ---------- Glass card (the single floating page) ---------- */
+.page-card {
+  margin-left: 5.5rem; /* clear the IconRail */
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, rgba(18, 18, 30, 0.62) 0%, rgba(18, 18, 30, 0.5) 100%);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+@media (min-width: 1024px) {
+  .page-card { margin-left: 6.5rem; margin-right: 1.5rem; }
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: 'Space Grotesk', Inter, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Interactive elements */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* Accessible focus — visible ring on keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Utility layer ---------- */
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .glass-strong {
+    background: rgba(18, 18, 30, 0.72);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .card-hover {
+    transition:
+      transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.28s ease,
+      background-color 0.28s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+  }
+  /* Range slider base — used by progress + volume */
+  .range {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  .range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);
+    transition: transform 0.15s ease;
+  }
+  .range::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 9999px;
+    background: #fff;
+  }
+}
+
+/* ---------- Scrollbars ---------- */
+.scroll-area {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.scroll-area::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.scroll-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+  background-clip: padding-box;
+}
+
+/* Hide scrollbar for horizontal shelves while staying scrollable */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Skeleton shimmer ---------- */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.1) 37%,
+    rgba(255, 255, 255, 0.04) 63%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* ---------- Equalizer (now playing indicator on rows) ---------- */
+.eq-bar {
+  animation: equalize 1s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+/* ---------- Marquee (overflowing titles / artists) ---------- */
+.marquee-mask {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.marquee-track {
+  display: inline-flex;
+  width: max-content;
+  animation: nocturne-marquee var(--marquee-duration, 10s) linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover,
+.marquee-track:focus-within {
+  animation-play-state: paused;
+}
+.marquee-item {
+  padding-right: 3rem;
+}
+@keyframes nocturne-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .card-hover:hover {
+    transform: none;
+  }
+}

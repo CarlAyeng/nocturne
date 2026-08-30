@@ -1,0 +1,12 @@
+# Auto-detect text files and normalize line endings to LF on commit.
+# Forces CRLF on Windows checkouts to keep tooling happy.
+* text=auto eol=lf
+
+# Force shell scripts to LF (avoid CRLF shebangs on Windows).
+*.sh        text eol=lf
+*.bash      text eol=lf
+
+# Windows-native scripts stay CRLF.
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.ps1       text eol=crlf

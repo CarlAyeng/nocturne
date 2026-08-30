@@ -7,9 +7,16 @@
 ![Nocturne](https://img.shields.io/badge/Vite-5-646cff?logo=vite&logoColor=white)
 ![Nocturne](https://img.shields.io/badge/Tailwind-3-38bdf8?logo=tailwindcss&logoColor=white)
 ![Nocturne](https://img.shields.io/badge/Framer%20Motion-11-ff69b4?logo=framer&logoColor=white)
+![MIT License](https://img.shields.io/badge/license-MIT-22c55e)
 
 <p align="center">
   <img src="public/screenshot.png" alt="Nocturne — home view" width="100%">
+</p>
+
+<p align="center">
+  <a href="#run"><strong>Try it locally</strong></a> ·
+  <a href="https://github.com/CarlAyeng/nocturne/issues"><strong>Report a bug</strong></a> ·
+  <a href="https://github.com/CarlAyeng/nocturne/blob/main/LICENSE"><strong>License</strong></a>
 </p>
 
 ---
@@ -27,6 +34,16 @@
 - **Long-title marquee** — overflowing titles scroll seamlessly (pauses on hover, disabled under reduced motion).
 - **Keyboard shortcuts** — Space (play/pause), ←/→ (seek ±5s), N / P (next / prev), L (like), F (now playing), Ctrl/⌘+K (focus search).
 - **Accessibility** — visible focus rings, full keyboard navigation, ARIA labels, `prefers-reduced-motion` honored.
+
+### Feature highlights
+
+| | |
+|---|---|
+| 🪟 **Single glass card** | One floating `backdrop-filter: blur(24px)` card over your photo background. The whole app reads as one object. |
+| 🎚 **Procedural audio engine** | Per-track Web Audio synth with a virtual transport clock — real play/pause/seek/next/prev, no synth hackery required. |
+| 🎨 **Deterministic artwork** | Every cover is built at runtime from `(seed, shape, palette)` — same inputs always produce the same SVG. No images stored. |
+| 🧪 **Real interactivity** | Drag-to-reorder queue, long-title marquee, keyboard shortcuts, full ARIA, reduced-motion respected. |
+| 📦 **Zero API dependencies** | 100% offline-capable. Drop in your own MP3s to upgrade from synth to real audio. |
 
 ## Stack
 
